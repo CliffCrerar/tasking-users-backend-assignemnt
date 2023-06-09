@@ -2,12 +2,12 @@
 
 ## Intro
 
-TODO:
+> TODO:
 
 ## Prerequisites
 
 1. Nodejs
-2. Instance MongoDb Running
+2. MongoDb Instance Running
 
 ## Getting started
 
