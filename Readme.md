@@ -11,7 +11,7 @@
 
 ## Application Components
 
-![Tasking Users Components](./assets/tasking-users-tech-stack.drawio.svg)
+![Tasking Users Components](./assets/tasking-users-tech-stack.drawio.jpg)
 
 > The application uses `expressjs` as its main engine and also produces the `REST` endpoints. It will `CRUD` data using `mongoose` as its orm to a `mongodb` instance.
 
