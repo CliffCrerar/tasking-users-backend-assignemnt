@@ -9,6 +9,12 @@ TODO:
 1. Nodejs
 2. Instance MongoDb Running
 
+## Application Components
+
+![Tasking Users Components](./assets/tasking-users-tech-stack.drawio.svg)
+
+> The application uses `expressjs` as its main engine and also produces the `REST` endpoints. It will `CRUD` data using `mongoose` as its orm to a `mongodb` instance.
+
 ## Getting started
 
 1. Create a file in the project root and populate it as follows. Substituting your dev environment values.
@@ -42,4 +48,3 @@ MONGO_DB_URL=<mongodb connection string>
     ```
     - I used mongo atlas as my database host.
 
-    

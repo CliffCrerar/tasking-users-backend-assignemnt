@@ -34,7 +34,10 @@ connect((error, dbContext) =>{
 
     router.post('/',(request, response)=>{
         console.debug('> CREATE USER');
-        response.send();
+        // response.send();
+        var newUser = new User({
+            
+        })
     })
 
     router.put('/',(request, response)=>{

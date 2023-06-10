@@ -1,12 +1,9 @@
 const express = require('express');
-const taskRouter = require('./routes/task');
-const userRouter = require('./routes/user');
-const httpLogger = require('./utils/http-logger');
+const {taskRouter,userRouter} = require('./routes');
+const {httpLogger} = require('./utils');
 
 const app = express();
-// app.use(express.json());
-
-
+app.use(express.json());
 app.all('*', httpLogger)
 
 const indexRouter = express.Router();
