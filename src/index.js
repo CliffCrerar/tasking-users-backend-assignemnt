@@ -7,7 +7,10 @@ app.use(express.json());
 app.all('*', httpLogger)
 
 const indexRouter = express.Router();
-
+app.use('*', (req,res,next)=>{
+    console.log(res);
+    next()
+})
 app.use('/',indexRouter);
 app.use('/users',userRouter);
 

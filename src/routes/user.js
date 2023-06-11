@@ -7,6 +7,10 @@ const connect = require('../data');
 const {User} = require('../models');
 
 connect((error, dbContext) =>{
+    router.all('*', (req,res,next)=>{
+        console.debug('Routing to Users');
+        next();
+    })
     if(error) throw new Error("USER CONTROLLER: Error connecting to database")
     console.log('UserController Connected');
 
@@ -22,7 +26,11 @@ connect((error, dbContext) =>{
                 response.send(result);
             })
             .catch(error => {
-                response.status(500).send(error)
+                if(error.code === 8000){
+                    response.status(401).send(error);
+                    return;
+                }
+                response.status(500).send(error);
             })
         // response.send();
     })
