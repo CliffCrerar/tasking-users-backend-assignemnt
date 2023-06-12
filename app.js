@@ -13,6 +13,3 @@ require('./src')((error, apiAndDb) => {
     console.log("Data Connections: ", dbContext.connections.length);
     app.listen(port, () => startupLog(port));
 });
-
-
-
