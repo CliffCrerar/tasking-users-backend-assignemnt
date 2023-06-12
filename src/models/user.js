@@ -1,19 +1,25 @@
 // User Model
 
-const mongoose = require('mongoose');
-const { taskSchema } = require('./task');
+const
+    mongoose = require('mongoose'),
+    Task = require('./task'),
+    { guid } = require('../utils'),
+    unique = true,
+    required = true,
+    userDefinition = {
+        userId: { type: String, required, unique },
+        givenName: { type: String, required },
+        familyName: { type: String, required },
+        userName: { type: String, required, unique },
+        dateCreated: { type: Date, required, default: new Date().toJSON() },
+        tasks: { type: [Task.Schema], default: [] }
+    },
+    userSchema = mongoose.Schema(userDefinition);
 
-const userDefinition =  {
-    userId: mongoose.ObjectId,
-    givenName: String,
-    familyName: String,
-    userName: String,
-    tasks: [taskSchema]
-}
+userSchema.path('userName').index({ unique })
+userSchema.path('userId').index({ unique })
 
-const userSchema = mongoose.Schema(userDefinition)
-const User = mongoose.model('User', userSchema);
 module.exports = {
-    User,
-    userSchema
+    Schema: userSchema,
+    Model: mongoose.model('User', userSchema)
 }

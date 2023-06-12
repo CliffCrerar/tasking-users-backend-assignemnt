@@ -1,50 +1,44 @@
 // Users Controller
 
-const express = require('express');
-const { handlePromise } = require('../utils');
-const router = express.Router();
-const connect = require('../data');
+const { handlePromise, guid } = require('../utils');
 const { User } = require('../models');
+const router = require('express').Router();
 
-connect((error, dbContext) => {
-    if (error) throw new Error("USER CONTROLLER: Error connecting to database")
-    console.log('UserController Connected');
+router.get('/', (request, response) => {
+    console.log('> GET ALL USERS');
+    const dbPromise = User.Model.find()
+    handlePromise(dbPromise, response)
+})
 
-    router.get('/', (request, response) => {
-        console.log('> GET ALL USERS');
-        response.type('json');
-        const dbPromise = dbContext.models.User.find()
-        handlePromise(dbPromise, response)
-    })
+router.get('/:userId', (request, response) => {
+    console.debug('> GET USER FOR USER ID');
 
-    router.get('/:userId', (request, response) => {
-        console.debug('> GET USER FOR USER ID');
-        const userId = request.params['userId']
-        const dbPromise = dbContext.models.User.find({ userId });
-        handlePromise(dbPromise, response);
-    })
+    const userId = request.params['userId'];
+    const dbPromise = User.Model.findById(request.params['userId']);
 
-    router.post('/', (request, response) => {
-        console.debug('> CREATE USER');
-        console.log(request.body);
-        const user = new User(request.body);
-        const dbPromise = user.save();
-        handlePromise(dbPromise, response);
-    })
+    handlePromise(dbPromise, response);
+})
 
-    router.put('/:userId', (request, response) => {
-        const userId = request.params['userId'];
-        const query = request.query;
+router.post('/', (request, response) => {
+    console.debug('> CREATE USER');
 
-        console.log(userId, query)
-        console.debug('> UPDATE USER');
-        response.send();
-    })
+    const user = new User.Model({ ...request.body, userId: guid.create() });
+    const dbPromise = user.save();
+    handlePromise(dbPromise, response, true);
+})
 
-    router.delete('/', (request, response) => {
-        console.debug('> DELETE USER');
-        response.send();
-    })
+router.put('/:userId', (request, response) => {
+    console.debug('> UPDATE USER');
+    const userId = request.params['userId'];
+    const data = Object.keys(request.query).length === 0 ? request.body : request.query;
+    const dbPromise = User.Model.findByIdAndUpdate(userId, data, { returnDocument: 'after' });
+    handlePromise(dbPromise, response, true)
+})
+
+router.delete('/:userId', (request, response) => {
+    console.debug('> DELETE USER');
+    const dbPromise = User.Model.findOneAndDelete({ userId: request.params['userId'] });
+    handlePromise(dbPromise, response)
 })
 
 module.exports = router;

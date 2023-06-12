@@ -1,19 +1,25 @@
 // Task Model
 
-const mongoose = require('mongoose');
+const
+    mongoose = require('mongoose'),
+    { guid } = require('../utils'),
+    required = true,
+    unique = true,
+    taskDefinition = {
+        taskId: { type: String, required, unique },
+        name: { type: String, required },
+        description: String,
+        dateCreated: { type: Date, required, default: new Date().toJSON() },
+        user: {
+            type: mongoose.ObjectId,
+            ref: 'User'
+        }
+    },
+    taskSchema = mongoose.Schema(taskDefinition);
 
-const taskDefinition = {
-    taskId: mongoose.ObjectId,
-    name: String,
-    description: String,
-    dateCreated: Date,
-    user: {
-        type: mongoose.ObjectId,
-        ref: 'User'
-    }
-} 
+taskSchema.path('taskId').index({ unique })
 
-const taskSchema = mongoose.Schema(taskDefinition);
-const Task = mongoose.model('Task', taskSchema);
-
-module.exports = {Task, taskSchema}
+module.exports = {
+    Schema: taskSchema,
+    Model: mongoose.model('Task', taskSchema)
+}
