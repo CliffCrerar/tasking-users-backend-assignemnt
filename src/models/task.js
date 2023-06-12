@@ -6,7 +6,6 @@ const
     required = true,
     unique = true,
     taskDefinition = {
-        taskId: { type: String, required, unique },
         name: { type: String, required },
         description: String,
         dateCreated: { type: Date, required, default: new Date().toJSON() },
@@ -16,8 +15,6 @@ const
         }
     },
     taskSchema = mongoose.Schema(taskDefinition);
-
-taskSchema.path('taskId').index({ unique })
 
 module.exports = {
     Schema: taskSchema,

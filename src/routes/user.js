@@ -22,7 +22,7 @@ router.get('/:userId', (request, response) => {
 router.post('/', (request, response) => {
     console.debug('> CREATE USER');
 
-    const user = new User.Model({ ...request.body, userId: guid.create() });
+    const user = new User.Model({ ...request.body, dateCreated: new Date().toJSON() });
     const dbPromise = user.save();
     handlePromise(dbPromise, response, true);
 })
