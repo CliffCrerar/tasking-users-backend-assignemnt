@@ -6,6 +6,7 @@ const router = express.Router();
 const connect = require('../data');
 const { User } = require('../models');
 
+
 connect((error, dbContext) => {
     if (error) throw new Error("USER CONTROLLER: Error connecting to database")
     console.log('UserController Connected');
@@ -13,6 +14,7 @@ connect((error, dbContext) => {
     router.get('/', (request, response) => {
         console.log('> GET ALL USERS');
         response.type('json');
+
         const dbPromise = dbContext.models.User.find()
         handlePromise(dbPromise, response)
     })
@@ -26,6 +28,7 @@ connect((error, dbContext) => {
 
     router.post('/', (request, response) => {
         console.debug('> CREATE USER');
+
         console.log(request.body);
         const user = new User(request.body);
         const dbPromise = user.save();
