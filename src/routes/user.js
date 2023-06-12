@@ -39,6 +39,7 @@ router.delete('/:userId', (request, response) => {
     console.debug('> DELETE USER');
     const dbPromise = User.Model.findOneAndDelete({ userId: request.params['userId'] });
     handlePromise(dbPromise, response)
+
 })
 
 module.exports = router;
