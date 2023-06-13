@@ -5,17 +5,18 @@ const httpLogger = require('./utils/http-logger');
 const initDataBase = require('./data');
 
 
+
 const app = express();
 app.use(express.json());
 app.all('*', httpLogger)
 
 const indexRouter = express.Router();
-app.use('*', (req,res,next)=>{
+app.use('*', (req, res, next) => {
     console.log(res);
     next()
 })
-app.use('/',indexRouter);
-app.use('/users',userRouter);
+app.use('/', indexRouter);
+app.use('/api/users', userRouter);
 
 // .listen(3000, () => startupLog(3000))
 

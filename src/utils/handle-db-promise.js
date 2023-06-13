@@ -1,3 +1,5 @@
+// handle db request promise
+
 const _ = require('lodash');
 
 const StatusCodes = {

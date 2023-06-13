@@ -4,7 +4,6 @@ const
     mongoose = require('mongoose'),
     { guid } = require('../utils'),
     required = true,
-    unique = true,
     taskDefinition = {
         name: { type: String, required },
         description: String,
