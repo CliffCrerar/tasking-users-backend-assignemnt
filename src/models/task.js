@@ -7,7 +7,7 @@ const
     taskDefinition = {
         name: { type: String, required },
         description: String,
-        dateCreated: { type: Date, required, default: new Date().toJSON() },
+        dateCreated: { type: Date, required },
         user: {
             type: mongoose.ObjectId,
             ref: 'User'

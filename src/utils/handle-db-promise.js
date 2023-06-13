@@ -20,12 +20,12 @@ module.exports = function handlePromise(dbCallPromise, responseObject, method = 
         .then(result => {
 
             if (Array.isArray(result) && result.length === 0 || _.isNil(result)) {
-                responseObject.status(StatusCodes.notFound).send('Not found')
+                responseObject.status(StatusCodes.notFound).send({ message: 'Not found' })
                 return;
             }
 
             switch (method) {
-                case 'DELETE': responseObject.status(StatusCodes.noContent).send()
+                case 'DELETE': responseObject.status(StatusCodes.noContent).send(); break;
                 case 'POST': responseObject.status(StatusCodes.created).send(result); break;
                 case 'PUT': responseObject.status(StatusCodes.created).send(result); break;
                 case 'GET': responseObject.send(result); break;

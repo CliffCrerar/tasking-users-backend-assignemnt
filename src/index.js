@@ -1,6 +1,6 @@
 const express = require('express');
-const taskRouter = require('./routes/task');
-const userRouter = require('./routes/user');
+
+const { userRouter, taskRouter } = require('./routes');
 const httpLogger = require('./utils/http-logger');
 const initDataBase = require('./data');
 
@@ -17,6 +17,7 @@ app.use('*', (req, res, next) => {
 })
 app.use('/', indexRouter);
 app.use('/api/users', userRouter);
+app.use('/api/tasks', taskRouter);
 
 // .listen(3000, () => startupLog(3000))
 
