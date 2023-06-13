@@ -53,4 +53,6 @@ mongo-express:
 
 - I used mongo atlas as my database host.
 
-    
+### License
+
+> MIT
