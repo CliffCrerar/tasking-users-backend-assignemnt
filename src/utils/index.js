@@ -1,10 +1,9 @@
 // Utils index
 
-const httpLogger = require('./http-logger');
-const startupLogger = require('./startup-log');
-const handlePromise = require('./handle-db-promise');
 module.exports = {
-    httpLogger,
-    startupLogger,
-    handlePromise
+    httpLogger: require('./http-logger'),
+    startupLogger: require('./startup-log'),
+    handlePromise: require('./handle-db-promise'),
+    guid: require('./guid'),
+    Validator: require('./create-update-validator')
 }

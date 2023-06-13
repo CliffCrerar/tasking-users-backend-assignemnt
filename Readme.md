@@ -2,7 +2,7 @@
 
 ## Intro
 
-> TODO:
+> ### A simple rest api demonstrating the features of mongoose for mongodb and express js.
 
 ## Prerequisites
 

@@ -1,9 +1,15 @@
 // Main program
 require('dotenv').config();
-const path = require('path');
-// global.get = (modPath) => require(path.join(__dirname, modPath));
-const app = require('./src');
-const {startupLog} = require('./src/utils');
+
+const startupLog = require('./src/utils/startup-log');
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => startupLog);
+require('./src')((error, apiAndDb) => {
+    if (error) {
+        console.error(error.message, error.stack)
+        return;
+    }
+    const { dbContext, app } = apiAndDb;
+    console.log("Data Connections: ", dbContext.connections.length);
+    app.listen(port, () => startupLog(port));
+});
