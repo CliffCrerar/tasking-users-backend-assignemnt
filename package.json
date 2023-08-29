@@ -21,6 +21,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "lodash": "^4.17.21",
@@ -28,7 +29,6 @@
     "nodemon": "^2.0.22",
     "uuid": "^9.0.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CliffCrerar/tasking-users-backend-assignment.git"

@@ -8,6 +8,7 @@ const initDataBase = require('./data');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.all('*', httpLogger)
 
 const indexRouter = express.Router();
